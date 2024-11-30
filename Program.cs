@@ -1,60 +1,80 @@
-﻿using System;
-
-namespace RockPaperScissor
+﻿namespace RockPaperScissor
 {
     public class Program
     {
+        #region "Global variables | Finished"
+        public static int rock = 1;
+        public static int paper = 2;
+        public static int scissor = 3;
+        public static int playerPoints = 0;
+        public static int computerPoints = 0;
+        public static int _playerScore = 0;
+        public static int _computerScore = 0;
+        #endregion
+
         static void Main(string[] args)
         {
             MainMenu();
         }
+
+        #region "Main menu | Finished"
         public static void MainMenu()
         {
-            Console.WriteLine("| Välkommen till Sten, Sax, Påse-spelet\n" +
-                "| R. Rules\n" +
-                "| S. Start game\n" +
-                "| Q. Quit");
-            var huvudMenyAlt = Console.ReadKey().Key;
-            bool huvudMeny = true;
-            while (huvudMeny)
+            Console.Clear();
+            Console.Write("|---------------------------Rock, paper & scissor-------------------------|\n" +
+                $"| R. Rules{ [],-64}|\n" +
+                $"| P. Points{ [],-63}|\n" +
+                $"| S. Start game{ [],-59}|\n" +
+                $"| Q. Quit{ [],-65}|\n" +
+                "|-------------------------------------------------------------------------|\n");
+            var mainMenuAlt = Console.ReadKey().Key;
+            bool mainMenu = true;
+            do
             {
-                switch (huvudMenyAlt)
+                switch (mainMenuAlt)
                 {
                     case ConsoleKey.R:
                         {
                             RulesGame();
-                            huvudMeny = false;
+                            mainMenu = false;
+                            break;
+                        }
+                    case ConsoleKey.P:
+                        {
+                            AchivedPoints();
+                            mainMenu = false;
                             break;
                         }
                     case ConsoleKey.S:
                         {
                             StartGame();
-                            huvudMeny = false;
+                            mainMenu = false;
                             break;
                         }
                     case ConsoleKey.Q:
                         {
                             QuitGame();
-                            huvudMeny = false;
+                            mainMenu = false;
                             break;
                         }
                     default:
                         {
                             do
                             {
-                                Console.Write("| Choose between (Rules <R>, Start game <S>, Quit <Q>)\n");
-                                huvudMenyAlt = Console.ReadKey(true).Key;
-                                if (huvudMenyAlt == ConsoleKey.R)
+                                Console.Write("|----------------------------Choose between-------------------------------|\n");
+                                Console.Write("|                  (Rules <R>, Start game <S>, Quit <Q>)                  |\n");
+                                mainMenuAlt = Console.ReadKey(true).Key;
+                                if (mainMenuAlt == ConsoleKey.R)
                                 {
                                     RulesGame();
                                     break;
                                 }
-                                else if (huvudMenyAlt == ConsoleKey.S)
+                                else if (mainMenuAlt == ConsoleKey.S)
                                 {
                                     StartGame();
                                     break;
                                 }
-                                else if (huvudMenyAlt == ConsoleKey.Q)
+                                else if (mainMenuAlt == ConsoleKey.Q)
                                 {
                                     QuitGame();
                                     break;
@@ -65,120 +85,209 @@ namespace RockPaperScissor
                         }
                 }
             }
+            while (mainMenu);
         }
+        #endregion
 
-        #region "Spelets regler | Klar"
+        #region "Game rules | Finished"
         public static void RulesGame()
         {
             Console.Clear();
-            Console.WriteLine("|--------------------------------Game Rules-------------------------------|\n" +
-                "| - The user chooses between (rock, paper or scissor)\n" +
-                "| - The computer randomly chooses between (rock, paper or scissor)\n" +
-                "| - The game shows who has won the match and points are awarded");
+            Console.Write("|--------------------------------Game Rules-------------------------------|\n" +
+                $"| - The user chooses between (rock, paper or scissor){ [],-21}|\n" +
+                $"| - The computer randomly chooses between (rock, paper or scissor){ [],-8}|\n" +
+                $"| - The game shows who has won the match and points are{ [],-19}|\n" +
+                $"|   awarded either to computer or player{ [],-34}|\n");
             BackToMenu();
         }
         #endregion
 
-        #region "Starta spel | Pågående"
+        #region "Points achived | Finished"
+        private static void AchivedPoints()
+        {
+            Console.Clear();
+            Console.Write("|-----------------------------Player vs Computer--------------------------|\n" +
+                $"|{ [],-29}Your points: {playerPoints}{ [],-30}|\n" +
+                $"|{ [],-25}Computer points: {computerPoints}{ [],-30}|\n");
+            BackToMenu();
+        }
+        #endregion
+
+        #region "Play game | Finished"
         public static void StartGame()
         {
-            int rock = 1;
-            int paper = 2;
-            int scissor = 3;
-            int nbr1;
-            int nbr2;
-            int nbr3;
+            int computer;
             Console.Clear();
-            Console.Write("|------------------Choose between (rock, paper & scissor)-----------------|\n" +
-                "| <R> - Rock\n" +
-                "| <P> - Paper\n" +
-                "| <S> - Scissor\n");
+
+            Console.Write("|--------------------------Choose your game strategy----------------------|\n" +
+                $"|{ [],-33}<R> - Rock{ [],-30}|\n" +
+                $"|{ [],-33}<P> - Paper{ [],-29}|\n" +
+                $"|{ [],-33}<S> - Scissor{ [],-27}|\n");
             do
             {
-                Console.Write("| Choose between (Rock <R>, Paper <P>, Scissor <S>)\n");
+                Console.Write($"|{ [],-17}Press key (Rock <R>, Paper <P>, Scissor <S>){ [],-12}|\n");
+                Console.Write("|-------------------------------------------------------------------------|\n");
                 var input = Console.ReadKey(true);
                 if (input.Key == ConsoleKey.R) // Rock
                 {
-                    Console.Write("| You chose: Rock\n", rock);
-                    nbr1 = ComputerChoice();
+                    Console.Clear();
+                    Console.Write("|--------------------------------Game results-----------------------------|\n" +
+                        $"|{ [],-31}You chose: Rock{ [],-27}|\n", rock);
+                    computer = ComputerChoice();
+                    Rock(rock, computer);
                     PlayAgain();
                     break;
                 }
                 else if (input.Key == ConsoleKey.P) // Paper
                 {
-                    Console.Write("| You chose: Paper\n", paper);
-                    nbr2 = ComputerChoice();
+                    Console.Clear();
+                    Console.Write("|--------------------------------Game results-----------------------------|\n" +
+                        $"|{ [],-31}You chose: Paper{ [],-26}|\n", paper);
+                    computer = ComputerChoice();
+                    Paper(paper, computer);
                     PlayAgain();
                     break;
                 }
                 else if (input.Key == ConsoleKey.S) // Scissor
                 {
-                    Console.Write("| You chose: Scissor\n", scissor);
-                    nbr3 = ComputerChoice();
+                    Console.Clear();
+                    Console.Write("|--------------------------------Game results-----------------------------|\n" +
+                        $"|{ [],-29}You chose: Scissor{ [],-26}|\n", scissor);
+                    computer = ComputerChoice();
+                    Scissor(scissor, computer);
                     PlayAgain();
                     break;
                 }
-                else
-                {
-                    Console.Write("| Choose between (Rock <R>, Paper <P>, Scissor <S>)\n");
-                }
             }
             while (true);
-            //TillbakaTillMeny();
         }
         #endregion
 
-        #region "Avsluta spelet | Klar"
+        #region "Quit game | Finished"
         public static void QuitGame()
         {
             Console.Clear();
-            Console.WriteLine("|----------------------Hope to see you soon!---------------------|");
+            Console.Write("|----------------------------Hope to see you soon-------------------------|\n");
             Environment.Exit(0);
         }
         #endregion
 
-        #region "Extra tillägg"
+        #region "Navigation | Finished"
         public static void BackToMenu()
         {
             do
             {
-                Console.Write("| Click <Enter> to go back to start menu\n");
+                Console.Write("|-------------------------------------------------------------------------|\n");
+                Console.Write($"|{ [],-20}Click <Enter> to go back to start menu{ [],-15}|\n");
+                Console.Write("|-------------------------------------------------------------------------|\n");
                 var input = Console.ReadKey(true);
                 if (input.Key == ConsoleKey.Enter)
                 {
                     MainMenu();
                     break;
                 }
+                Console.Clear();
             }
             while (true);
         }
         #endregion
 
-        #region "Datorns val"
+        #region "Game logic | Finished"
         public static int ComputerChoice()
         {
             int randomNumber;
             Random rnd = new Random();
-            randomNumber = rnd.Next(1, 3);
-            if (randomNumber == 0)
+            randomNumber = rnd.Next(1, 4);
+            if (randomNumber == 1)
             {
-                Console.Write("| Computer chose: Rock\n", randomNumber);
+                Console.Write($"|{ [],-28}Computer chose: Rock{ [],-25}|\n", randomNumber);
             }
-            else if (randomNumber == 2) 
+            else if (randomNumber == 2)
             {
-                Console.Write("| Computer chose: Paper\n", randomNumber);
+                Console.Write($"|{ [],-27}Computer chose: Paper{ [],-25}|\n", randomNumber);
             }
-            else
+            else if (randomNumber == 3)
             {
-                Console.Write("| Computer chose: Scissor\n", randomNumber);
+                Console.Write($"|{ [],-27}Computer chose: Scissor{ [],-23}|\n", randomNumber);
             }
             return randomNumber;
+        }
+
+        public static void Rock(int rock, int computer)
+        {
+            // Player: Rock | Computer: Scissor
+            if (rock == 1 && computer == 3)
+            {
+                Console.Write($"|{ [],-26}You win! (1+ for Player){ [],-23}|\n");
+                playerPoints = Scores(_playerScore);
+            }
+            // Player: Rock | Computer: Paper
+            else if (rock == 1 && computer == 2)
+            {
+                Console.Write($"|{ [],-24}You lose! (1+ for Computer){ [],-22}|\n");
+                computerPoints = Scores(_computerScore, true);
+            }
+            // Player: Rock | Computer: Rock
+            else if (rock == 1 && computer == 1)
+            {
+                Console.WriteLine($"|{ [],-36}Tie!{ [],-33}|");
+            }
+        }
+        public static void Paper(int paper, int nbr)
+        {
+            // Player: Paper | Computer: Rock
+            if (paper == 2 && nbr == 1)
+            {
+                Console.Write($"|{ [],-26}You win! (1+ for Player){ [],-23}|\n");
+                playerPoints = Scores(_playerScore);
+            }
+            // Player: Paper | Computer: Scissor
+            else if (paper == 2 && nbr == 3)
+            {
+                Console.Write($"|{ [],-24}You lose! (1+ for Computer){ [],-22}|\n");
+                computerPoints = Scores(_computerScore, true);
+            }
+            // Player: Paper | Computer: Paper
+            else if (paper == 2 && nbr == 2)
+            {
+                Console.WriteLine($"|{ [],-36}Tie!{ [],-33}|");
+            }
+        }
+        public static void Scissor(int scissor, int nbr)
+        {
+            // Player: Scissor | Computer: Paper
+            if (scissor == 3 && nbr == 2)
+            {
+                Console.Write($"|{ [],-26}You win! (1+ for Player){ [],-23}|\n");
+                playerPoints = Scores(_playerScore);
+            }
+            // Player: Scissor | Computer: Rock
+            else if (scissor == 3 && nbr == 1)
+            {
+                Console.Write($"|{ [],-24}You lose! (1+ for Computer){ [],-22}|\n");
+                computerPoints = Scores(_computerScore, true);
+            }
+            // Player: Scissor | Computer: Scissor
+            else if (scissor == 3 && nbr == 3)
+            {
+                Console.WriteLine($"|{ [],-36}Tie!{ [],-33}|");
+            }
+        }
+        public static int Scores(int _score)
+        {
+            return ++_playerScore;
+        }
+        public static int Scores(int _score, bool computer)
+        {
+            return ++_computerScore;
         }
         public static void PlayAgain()
         {
             do
             {
-                Console.Write("| Do you wanna play again? (Yes <Y>, No <N>)\n");
+                Console.Write("|-------------------------------------------------------------------------|\n");
+                Console.Write($"|{ [],-17}Do you wanna play again? (Yes <Y>, No <N>){ [],-14}|\n");
+                Console.Write("|-------------------------------------------------------------------------|\n");
                 var input = Console.ReadKey(true);
                 if (input.Key == ConsoleKey.Y) // Yes
                 {
@@ -189,12 +298,12 @@ namespace RockPaperScissor
                 {
                     MainMenu();
                     break;
-                }   
+                }
+                Console.Clear();
             }
             while (true);
-            //TillbakaTillMeny();
         }
     }
-        #endregion
+    #endregion
 }
 
