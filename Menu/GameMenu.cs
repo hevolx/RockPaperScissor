@@ -1,4 +1,6 @@
-﻿namespace UserInterface
+﻿using UserInterface.Extras;
+
+namespace UserInterface.Menu
 {
     public class GameMenu
     {
@@ -16,13 +18,13 @@
                 {
                     case ConsoleKey.P:
                         {
-                            //context.gameRules.Rules(context);
+                            context.gamePlayer.Player(context);
                             mainMenu = false;
                             break;
                         }
                     case ConsoleKey.C:
                         {
-                            context.gamePoints.Points(context);
+                            context.gameComputer.Computer(context);
                             mainMenu = false;
                             break;
                         }
@@ -37,12 +39,12 @@
                                 mainMenuAlt = Console.ReadKey(true).Key;
                                 if (mainMenuAlt == ConsoleKey.P)
                                 {
-                                    context.gameRules.Rules(context);
+                                    context.rules.Rules(context);
                                     break;
                                 }
                                 else if (mainMenuAlt == ConsoleKey.C)
                                 {
-                                    context.gamePoints.Points(context);
+                                    context.points.Points(context);
                                     break;
                                 }
                             }

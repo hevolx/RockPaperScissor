@@ -1,4 +1,4 @@
-﻿namespace UserInterface
+﻿namespace UserInterface.Extras
 {
     public class Program
     {
@@ -6,7 +6,7 @@
         private protected static void Main(string[] args)
         {
             context = new GameContext();
-            context.gameMenu.Menu(context);
+            context.mainMenu.StartMenu(context);
         }
     }
 }

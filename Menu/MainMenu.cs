@@ -1,4 +1,6 @@
-﻿namespace UserInterface
+﻿using UserInterface.Extras;
+
+namespace UserInterface.Menu
 {
     public class MainMenu
     {
@@ -20,25 +22,25 @@
                 {
                     case ConsoleKey.R:
                         {
-                            context.gameRules.Rules(context);
+                            context.rules.Rules(context);
                             mainMenu = false;
                             break;
                         }
                     case ConsoleKey.P:
                         {
-                            context.gamePoints.Points(context);
+                            context.points.Points(context);
                             mainMenu = false;
                             break;
                         }
                     case ConsoleKey.S:
                         {
-                            context.gameLogic.StartGame(context);
+                            context.gameMenu.GamemodeMenu(context);
                             mainMenu = false;
                             break;
                         }
                     case ConsoleKey.Q:
                         {
-                            context.gameQuit.Quit(context);
+                            context.quit.Quit(context);
                             mainMenu = false;
                             break;
                         }
@@ -53,22 +55,22 @@
                                 mainMenuAlt = Console.ReadKey(true).Key;
                                 if (mainMenuAlt == ConsoleKey.R)
                                 {
-                                    context.gameRules.Rules(context);
+                                    context.rules.Rules(context);
                                     break;
                                 }
                                 else if (mainMenuAlt == ConsoleKey.P)
                                 {
-                                    context.gamePoints.Points(context);
+                                    context.points.Points(context);
                                     break;
                                 }
                                 else if (mainMenuAlt == ConsoleKey.S)
                                 {
-                                    context.gameLogic.StartGame(context);
+                                    context.gameMenu.GamemodeMenu(context);
                                     break;
                                 }
                                 else if (mainMenuAlt == ConsoleKey.Q)
                                 {
-                                    context.gameQuit.Quit(context);
+                                    context.quit.Quit(context);
                                     break;
                                 }
                             }

@@ -1,4 +1,4 @@
-﻿namespace UserInterface
+﻿namespace UserInterface.Extras
 {
     public class GameQuit
     {

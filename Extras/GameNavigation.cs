@@ -1,4 +1,4 @@
-﻿namespace UserInterface
+﻿namespace UserInterface.Extras
 {
     public class GameNavigation
     {
@@ -13,7 +13,7 @@
                 var input = Console.ReadKey(true);
                 if (input.Key == ConsoleKey.Enter)
                 {
-                    context.gameMenu.Menu(context);
+                    context.mainMenu.StartMenu(context);
                     break;
                 }
                 Console.Clear();
@@ -33,12 +33,12 @@
                 var input = Console.ReadKey(true);
                 if (input.Key == ConsoleKey.Y) // Yes
                 {
-                    context.gameLogic.StartGame(context);
+                    context.gameMenu.GamemodeMenu(context);
                     break;
                 }
                 if (input.Key == ConsoleKey.N) // No
                 {
-                    context.gameMenu.Menu(context);
+                    context.mainMenu.StartMenu(context);
                     break;
                 }
                 Console.Clear();
