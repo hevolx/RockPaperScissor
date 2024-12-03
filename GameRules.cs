@@ -1,9 +1,9 @@
-﻿namespace RockPaperScissor
+﻿namespace UserInterface
 {
     public class GameRules
     {
         #region "Game rules | Finished"
-        public void Rules(GameContext context)
+        internal void Rules(GameContext context)
         {
             Console.Clear();
             Console.Write("|--------------------------------Game Rules-------------------------------|\n" +

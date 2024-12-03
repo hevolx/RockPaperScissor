@@ -1,26 +1,27 @@
-﻿using GameLogic;
+﻿using Entities;
 
-namespace RockPaperScissor
+namespace UserInterface
 {
     public class GameContext
     {
-        public Score score { get; set; }
-        public Player Player { get; set; }
-        public GameNavigation gameNavigation { get; set; }
-        public GameMenu gameMenu { get; set; }
-        public GameRules gameRules { get; set; }
-        public GamePoints gamePoints { get; set; }
-        public GameLogic gameLogic { get; set; }
-        public GameQuit gameQuit { get; set; }
-        public GameContext()
+        internal Score score { get; set; }
+        internal Player Player { get; set; }
+        internal GameNavigation gameNavigation { get; set; }
+        internal MainMenu gameMenu { get; set; }
+        internal GameRules gameRules { get; set; }
+        internal GamePoints gamePoints { get; set; }
+        internal ComputerVsPlayer computerVsPlayer { get; set; }
+        internal GameQuit gameQuit { get; set; }
+        internal GameContext()
         {
             score = new Score();
             Player = new Player();
             gameNavigation = new GameNavigation();
-            gameMenu = new GameMenu();
+            gameMenu = new MainMenu();
             gameRules = new GameRules();
             gamePoints = new GamePoints();
-            gameLogic = new GameLogic();
+            gameLogic = new ComputerVsPlayer();
+            gameQuit = new GameQuit();
         }
     }
 }

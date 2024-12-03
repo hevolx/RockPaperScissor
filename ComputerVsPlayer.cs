@@ -1,9 +1,9 @@
-﻿namespace RockPaperScissor
+﻿namespace UserInterface
 {
-    public class GameLogic
+    public class ComputerVsPlayer
     {
         #region "Play game | v.3"
-        public void StartGame(GameContext context)
+        internal void StartGame(GameContext context)
         {
             int computer;
             Console.Clear();
@@ -22,9 +22,9 @@
                 {
                     Console.Clear();
                     Console.Write("|--------------------------------Game results-----------------------------|\n" +
-                        $"|{ [],-31}You chose: Rock{ [],-27}|\n", context.Player.PlayerRock);
+                        $"|{ [],-31}You chose: Rock{ [],-27}|\n", context.Player.Rock);
                     computer = ComputerChoice();
-                    WhoWonTheGame(context, context.Player.PlayerRock, computer);
+                    WhoWonTheGame(context, context.Player.Rock, computer);
                     context.gameNavigation.PlayAgain(context);
                     break;
                 }
@@ -32,9 +32,9 @@
                 {
                     Console.Clear();
                     Console.Write("|--------------------------------Game results-----------------------------|\n" +
-                        $"|{ [],-31}You chose: Paper{ [],-26}|\n", context.Player.PlayerPaper);
+                        $"|{ [],-31}You chose: Paper{ [],-26}|\n", context.Player.Paper);
                     computer = ComputerChoice();
-                    WhoWonTheGame(context, context.Player.PlayerPaper, computer);
+                    WhoWonTheGame(context, context.Player.Paper, computer);
                     context.gameNavigation.PlayAgain(context);
                     break;
                 }
@@ -42,9 +42,9 @@
                 {
                     Console.Clear();
                     Console.Write("|--------------------------------Game results-----------------------------|\n" +
-                        $"|{ [],-29}You chose: Scissor{ [],-26}|\n", context.Player.PlayerScissor);
+                        $"|{ [],-29}You chose: Scissor{ [],-26}|\n", context.Player.Scissor);
                     computer = ComputerChoice();
-                    WhoWonTheGame(context, context.Player.PlayerScissor, computer);
+                    WhoWonTheGame(context, context.Player.Scissor, computer);
                     context.gameNavigation.PlayAgain(context);
                     break;
                 }
@@ -54,7 +54,7 @@
         #endregion
 
         #region "Computer | v.3"
-        public static int ComputerChoice()
+        internal static int ComputerChoice()
         {
             int randomNumber;
             Random rnd = new Random();
@@ -69,26 +69,26 @@
         #endregion
 
         #region "Calculates who won | v.2"
-        public void WhoWonTheGame(GameContext context, int playerNbr, int computerNbr)
+        internal void WhoWonTheGame(GameContext context, int playerNbr, int computerNbr)
         {
             switch (playerNbr)
             {
                 case 0:
                     {
                         // Player: Rock | Computer: Scissor
-                        if (context.Player.PlayerRock == 0 && computerNbr == 2)
+                        if (context.Player.Rock == 0 && computerNbr == 2)
                         {
                             Console.Write($"|{ [],-26}You win! (1+ for Player){ [],-23}|\n");
-                            context.score.playerPoints = context.score.Scores(context.score._playerScore);
+                            context.score.playerPoints = context.score.Scores(context.score.playerScore);
                         }
                         // Player: Rock | Computer: Paper
-                        else if (context.Player.PlayerRock == 0 && computerNbr == 1)
+                        else if (context.Player.Rock == 0 && computerNbr == 1)
                         {
                             Console.Write($"|{ [],-24}You lose! (1+ for Computer){ [],-22}|\n");
-                            context.score.computerPoints = context.score.Scores(context.score._computerScore, true);
+                            context.score.computerPoints = context.score.Scores(context.score.computerScore, true);
                         }
                         // Player: Rock | Computer: Rock
-                        else if (context.Player.PlayerRock == 0 && computerNbr == 0)
+                        else if (context.Player.Rock == 0 && computerNbr == 0)
                         {
                             Console.WriteLine($"|{ [],-36}Tie!{ [],-33}|");
                         }
@@ -97,19 +97,19 @@
                 case 1: // Paper
                     {
                         // Player: Paper | Computer: Rock
-                        if (context.Player.PlayerPaper == 1 && computerNbr == 0)
+                        if (context.Player.Paper == 1 && computerNbr == 0)
                         {
                             Console.Write($"|{ [],-26}You win! (1+ for Player){ [],-23}|\n");
-                            context.score.playerPoints = context.score.Scores(context.score._playerScore);
+                            context.score.playerPoints = context.score.Scores(context.score.playerScore);
                         }
                         // Player: Paper | Computer: Scissor
-                        else if (context.Player.PlayerPaper == 1 && computerNbr == 2)
+                        else if (context.Player.Paper == 1 && computerNbr == 2)
                         {
                             Console.Write($"|{ [],-24}You lose! (1+ for Computer){ [],-22}|\n");
-                            context.score.computerPoints = context.score.Scores(context.score._computerScore, true);
+                            context.score.computerPoints = context.score.Scores(context.score.computerScore, true);
                         }
                         // Player: Paper | Computer: Paper
-                        else if (context.Player.PlayerPaper == 1 && computerNbr == 1)
+                        else if (context.Player.Paper == 1 && computerNbr == 1)
                         {
                             Console.WriteLine($"|{ [],-36}Tie!{ [],-33}|");
                         }
@@ -118,19 +118,19 @@
                 case 2: // Scissor
                     {
                         // Player: Scissor | Computer: Paper
-                        if (context.Player.PlayerScissor == 2 && computerNbr == 1)
+                        if (context.Player.Scissor == 2 && computerNbr == 1)
                         {
                             Console.Write($"|{ [],-26}You win! (1+ for Player){ [],-23}|\n");
-                            context.score.playerPoints = context.score.Scores(context.score._playerScore);
+                            context.score.playerPoints = context.score.Scores(context.score.playerScore);
                         }
                         // Player: Scissor | Computer: Rock
-                        else if (context.Player.PlayerScissor == 2 && computerNbr == 0)
+                        else if (context.Player.Scissor == 2 && computerNbr == 0)
                         {
                             Console.Write($"|{ [],-24}You lose! (1+ for Computer){ [],-22}|\n");
-                            context.score.computerPoints = context.score.Scores(context.score._computerScore, true);
+                            context.score.computerPoints = context.score.Scores(context.score.computerScore, true);
                         }
                         // Player: Scissor | Computer: Scissor
-                        else if (context.Player.PlayerScissor == 2 && computerNbr == 2)
+                        else if (context.Player.Scissor == 2 && computerNbr == 2)
                         {
                             Console.WriteLine($"|{ [],-36}Tie!{ [],-33}|");
                         }

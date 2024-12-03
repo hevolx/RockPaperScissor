@@ -1,9 +1,9 @@
-﻿namespace RockPaperScissor
+﻿namespace UserInterface
 {
     public class GamePoints
     {
         #region "Points achived | Finished"
-        public void Points(GameContext context)
+        internal void Points(GameContext context)
         {
             Console.Clear();
             Console.Write("|-----------------------------Player vs Computer--------------------------|\n" +

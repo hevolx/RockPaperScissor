@@ -1,9 +1,9 @@
-﻿namespace RockPaperScissor
+﻿namespace UserInterface
 {
     public class GameQuit
     {
         #region "Quit game | Finished"
-        public void Quit()
+        internal void Quit(GameContext context)
         {
             Console.Clear();
             Console.Write("|----------------------------Hope to see you soon-------------------------|\n");

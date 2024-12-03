@@ -1,44 +1,28 @@
-﻿namespace RockPaperScissor
+﻿namespace UserInterface
 {
     public class GameMenu
     {
-        #region "Main menu | Finished"
-        public void Menu(GameContext context)
+        #region "Play game | v.3"
+        internal void GamemodeMenu(GameContext context)
         {
-            Console.Clear();
-            Console.Write("|---------------------------Rock, paper & scissor-------------------------|\n" +
-                $"| R. Rules{ [],-64}|\n" +
-                $"| P. Points{ [],-63}|\n" +
-                $"| S. Start game{ [],-59}|\n" +
-                $"| Q. Quit{ [],-65}|\n" +
-                "|-------------------------------------------------------------------------|\n");
+            Console.Write("|-------------------------------Choose gamemode---------------------------|\n" +
+               $"| <P> - Player vs Player{ [],-30}|\n" +
+               $"| <C> - Computer vs Player{ [],-29}|\n");
             var mainMenuAlt = Console.ReadKey().Key;
             bool mainMenu = true;
             do
             {
                 switch (mainMenuAlt)
                 {
-                    case ConsoleKey.R:
-                        {
-                            context.gameRules.Rules(context);
-                            mainMenu = false;
-                            break;
-                        }
                     case ConsoleKey.P:
                         {
+                            //context.gameRules.Rules(context);
+                            mainMenu = false;
+                            break;
+                        }
+                    case ConsoleKey.C:
+                        {
                             context.gamePoints.Points(context);
-                            mainMenu = false;
-                            break;
-                        }
-                    case ConsoleKey.S:
-                        {
-                            context.gameLogic.StartGame(context);
-                            mainMenu = false;
-                            break;
-                        }
-                    case ConsoleKey.Q:
-                        {
-                            context.gameQuit.Quit();
                             mainMenu = false;
                             break;
                         }
@@ -48,27 +32,17 @@
                             {
                                 Console.Clear();
                                 Console.Write("|----------------------------Choose between-------------------------------|\n");
-                                Console.Write("|                  (Rules <R>, Start game <S>, Quit <Q>)                  |\n");
+                                Console.Write("| <P> Player vs Player, <C> Computer vs Player |\n");
                                 Console.Write("|-------------------------------------------------------------------------|\n");
                                 mainMenuAlt = Console.ReadKey(true).Key;
-                                if (mainMenuAlt == ConsoleKey.R)
+                                if (mainMenuAlt == ConsoleKey.P)
                                 {
                                     context.gameRules.Rules(context);
                                     break;
                                 }
-                                else if (mainMenuAlt == ConsoleKey.P)
+                                else if (mainMenuAlt == ConsoleKey.C)
                                 {
                                     context.gamePoints.Points(context);
-                                    break;
-                                }
-                                else if (mainMenuAlt == ConsoleKey.S)
-                                {
-                                    context.gameLogic.StartGame(context);
-                                    break;
-                                }
-                                else if (mainMenuAlt == ConsoleKey.Q)
-                                {
-                                    context.gameQuit.Quit();
                                     break;
                                 }
                             }

@@ -1,9 +1,9 @@
-﻿namespace RockPaperScissor
+﻿namespace UserInterface
 {
     public class GameNavigation
     {
         #region "Menu-Navigation | Finished"
-        public void MenuNavigation(GameContext context)
+        internal void MenuNavigation(GameContext context)
         {
             do
             {
@@ -23,7 +23,7 @@
         #endregion
 
         #region "Play again-Navigation | Finished
-        public void PlayAgain(GameContext context)
+        internal void PlayAgain(GameContext context)
         {
             do
             {
