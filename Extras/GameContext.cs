@@ -14,7 +14,7 @@ namespace UserInterface.Extras
         internal GameRules rules { get; set; }
         internal GamePoints points { get; set; }
         internal GameComputer gameComputer { get; set; }
-        internal GamePlayer gamePlayer { get; set; }
+        public GamePlayer gamePlayer { get; set; }
         internal GameQuit quit { get; set; }
         internal GameContext()
         {

@@ -46,36 +46,7 @@ namespace UserInterface.Menu
                         }
                     default:
                         {
-                            do
-                            {
-                                Console.Clear();
-                                Console.Write("|----------------------------Choose between-------------------------------|\n");
-                                Console.Write("|                  (Rules <R>, Start game <S>, Quit <Q>)                  |\n");
-                                Console.Write("|-------------------------------------------------------------------------|\n");
-                                mainMenuAlt = Console.ReadKey(true).Key;
-                                if (mainMenuAlt == ConsoleKey.R)
-                                {
-                                    context.rules.Rules(context);
-                                    break;
-                                }
-                                else if (mainMenuAlt == ConsoleKey.P)
-                                {
-                                    context.points.Points(context);
-                                    break;
-                                }
-                                else if (mainMenuAlt == ConsoleKey.S)
-                                {
-                                    context.gameMenu.GamemodeMenu(context);
-                                    break;
-                                }
-                                else if (mainMenuAlt == ConsoleKey.Q)
-                                {
-                                    context.quit.Quit(context);
-                                    break;
-                                }
-                            }
-                            while (true);
-                            break;
+                            continue;
                         }
                 }
             }

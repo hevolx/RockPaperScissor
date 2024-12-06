@@ -8,7 +8,7 @@
             do
             {
                 Console.Write("|-------------------------------------------------------------------------|\n");
-                Console.Write($"|{ [],-20}Click <Enter> to go back to start menu{ [],-15}|\n");
+                Console.Write($"|{ [],-19}Click <Enter> to go back to start menu{ [],-16}|\n");
                 Console.Write("|-------------------------------------------------------------------------|\n");
                 var input = Console.ReadKey(true);
                 if (input.Key == ConsoleKey.Enter)

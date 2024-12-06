@@ -7,9 +7,11 @@ namespace UserInterface.Menu
         #region "Play game | v.3"
         internal void GamemodeMenu(GameContext context)
         {
+            Console.Clear();
             Console.Write("|-------------------------------Choose gamemode---------------------------|\n" +
-               $"| <P> - Player vs Player{ [],-30}|\n" +
-               $"| <C> - Computer vs Player{ [],-29}|\n");
+               $"|{ [],-28}<P> - Player vs Player{ [],-23}|\n" +
+               $"|{ [],-27}<C> - Computer vs Player{ [],-22}|\n" +
+               $"|-------------------------------------------------------------------------|\n");
             var mainMenuAlt = Console.ReadKey().Key;
             bool mainMenu = true;
             do
@@ -30,26 +32,7 @@ namespace UserInterface.Menu
                         }
                     default:
                         {
-                            do
-                            {
-                                Console.Clear();
-                                Console.Write("|----------------------------Choose between-------------------------------|\n");
-                                Console.Write("| <P> Player vs Player, <C> Computer vs Player |\n");
-                                Console.Write("|-------------------------------------------------------------------------|\n");
-                                mainMenuAlt = Console.ReadKey(true).Key;
-                                if (mainMenuAlt == ConsoleKey.P)
-                                {
-                                    context.rules.Rules(context);
-                                    break;
-                                }
-                                else if (mainMenuAlt == ConsoleKey.C)
-                                {
-                                    context.points.Points(context);
-                                    break;
-                                }
-                            }
-                            while (true);
-                            break;
+                            continue;
                         }
                 }
             }
